@@ -10,8 +10,8 @@ from keras.callbacks import ModelCheckpoint, EarlyStopping
 
 if __name__ == '__main__':
 	# Read the data.
-	x = pd.read_csv('data.csv', sep=';', header=None).to_numpy()
-	y = pd.read_csv('labels.csv', sep=';', header=None).to_numpy()
+	x = pd.read_csv('./data.csv', sep=';', header=None).to_numpy()
+	y = pd.read_csv('./labels.csv', sep=';', header=None).to_numpy()
 
 	# Get number of classes.
 	classes = np.unique(y).size
