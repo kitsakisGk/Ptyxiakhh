@@ -4,7 +4,7 @@ import pandas as pd
 if __name__ == '__main__':
 	# Load motion data and labels.
 	print('Loading motion data\n')
-	df = pd.read_csv('Preprocessed_Data.csv', sep=';', header=None)
+	df = pd.read_csv('./Preprocessed_Data.csv', sep=';', header=None)
 
 	df_x = df.drop(df.columns[[3]], axis=1)
 
