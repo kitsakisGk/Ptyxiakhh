@@ -13,8 +13,9 @@ if __name__ == '__main__':
 	x = pd.read_csv('./data.csv', sep=';', header=None).to_numpy()
 	y = pd.read_csv('./labels.csv', sep=';', header=None).to_numpy()
 
-	# Get number of classes.
+	# Get number of classes and input shape.
 	classes = np.unique(y).size
+	input_shape = (9, 1)
 
 	# Change labels to a one-hot encoding format.
 	y = keras.utils.to_categorical(y - 1, num_classes=classes)
@@ -24,12 +25,12 @@ if __name__ == '__main__':
 
 	# Create the model based on the VGG-16
 	model = Sequential()
-	model.add(Conv1D(input_shape=(3, 1), filters=64, kernel_size=3, padding="same", activation="relu",))
+	model.add(Conv1D(input_shape=input_shape, filters=64, kernel_size=3, padding="same", activation="relu",))
 	model.add(Conv1D(filters=32, kernel_size=3, padding="same", activation="relu"))
 	model.add(MaxPool1D(pool_size=2, strides=2))
 	model.add(Conv1D(filters=64, kernel_size=3, padding="same", activation="relu"))
 	model.add(Conv1D(filters=64, kernel_size=3, padding="same", activation="relu"))
-	model.add(MaxPool1D(pool_size=1, strides=1))
+	model.add(MaxPool1D(pool_size=2, strides=2))
 	model.add(Flatten())
 	model.add(Dense(units=512, activation="relu"))
 	model.add(Dense(units=256, activation="relu"))
