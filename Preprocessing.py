@@ -5,7 +5,7 @@ from sklearn import preprocessing
 
 # Function for normalizing data in each column but not the label column.
 def normalize(df):
-	for i in range(3):
+	for i in range(9):
 		df[i] = preprocessing.MinMaxScaler(feature_range=(-1, 1)).fit_transform(np.array(df[i]).reshape(-1, 1))
 	return df
 
@@ -22,7 +22,7 @@ if __name__ == '__main__':
 	label_df = label_df.drop(label_df.iloc[:, 2:8], axis=1)
 	label_df = label_df.drop(label_df.columns[[0]], axis=1)
 
-	data_df = data_df.drop(data_df.iloc[:, 4:23], axis=1)
+	data_df = data_df.drop(data_df.iloc[:, 10:23], axis=1)
 	data_df = data_df.drop(data_df.columns[[0]], axis=1)
 
 	# Concatenate the dataframes.
