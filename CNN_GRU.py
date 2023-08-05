@@ -16,8 +16,9 @@ if __name__ == '__main__':
 	x = pd.read_csv('./data.csv', sep=';', header=None).to_numpy()
 	y = pd.read_csv('./labels.csv', sep=';', header=None).to_numpy()
 
-	# Get number of classes.
+	# Get number of classes and input shape.
 	classes = np.unique(y).size
+	input_shape = (9, 1)
 
 	# Change labels to a one-hot encoding format.
 	y = keras.utils.to_categorical(y - 1, num_classes=classes)
@@ -27,9 +28,9 @@ if __name__ == '__main__':
 
 	# Define CNN model.
 	model = Sequential()
-	model.add(Conv1D(64, 3, activation='relu', input_shape=(3, 1)))
+	model.add(Conv1D(64, 3, activation='relu', input_shape=input_shape))
 	model.add(SpatialDropout1D(0.2))
-	model.add(MaxPooling1D(1))
+	model.add(MaxPooling1D(2))
 	model.add(GRU(64))
 	model.add(Dropout(0.1))
 	model.add(Dense(classes, activation='softmax'))
