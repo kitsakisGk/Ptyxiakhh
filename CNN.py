@@ -44,7 +44,7 @@ if __name__ == '__main__':
 	model.summary()
 
 	# Set the callbacks.
-	checkpoint = ModelCheckpoint("vgg16_1.h5", monitor='val_accuracy', verbose=1, save_best_only=True, save_weights_only=False, mode='auto', save_freq=1)
+	checkpoint = ModelCheckpoint("CNN.h5", save_weights_only=True, monitor='val_accuracy', mode='max', save_best_only=True)
 	early = EarlyStopping(monitor='val_accuracy', min_delta=0, patience=20, verbose=1, mode='auto')
 
 	# Train the model.
