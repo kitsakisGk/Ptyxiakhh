@@ -38,7 +38,7 @@ if __name__ == '__main__':
 
 	# Change the optimization.
 	opt = Adam(learning_rate=0.001)
-	model.compile(optimizer=opt, loss=keras.losses.categorical_crossentropy, metrics=['accuracy', keras.metrics.F1Score(), keras.metrics.Precision(), keras.metrics.Recall()])
+	model.compile(optimizer=opt, loss=keras.losses.categorical_crossentropy, metrics=['accuracy'])
 
 	# Set the callbacks.
 	checkpoint = ModelCheckpoint("CNN_GRU.h5", save_weights_only=True, monitor='val_accuracy', mode='max', save_best_only=True)
@@ -48,16 +48,16 @@ if __name__ == '__main__':
 	hist = model.fit(tf.expand_dims(x_train, axis=-1), y_train, epochs=100, batch_size=10000, callbacks=[checkpoint, early], verbose=1, validation_split=0.2)
 
 	# Plot and save the Model accuracy.
-	# plt.plot(hist.history['accuracy'])
-	# plt.plot(hist.history['val_accuracy'])
-	plt.plot(hist.history['f1_score'])
-	plt.plot(hist.history['precision'])
-	plt.plot(hist.history['recall'])
-	# plt.plot(hist.history['loss'])
-	# plt.plot(hist.history['val_loss'])
-	plt.title("CNN-GRU Model Accuracy")
-	plt.ylabel("Scores")
+	plt.plot(hist.history['accuracy'])
+	plt.plot(hist.history['val_accuracy'])
+	# plt.plot(hist.history['f1_score'])
+	# plt.plot(hist.history['precision'])
+	# plt.plot(hist.history['recall'])
+	plt.plot(hist.history['loss'])
+	plt.plot(hist.history['val_loss'])
+	plt.title("CNN-GRU Model")
+	plt.ylabel("Accuracy")
 	plt.xlabel("Epoch")
-	plt.legend(["F1-Score", "Precision", "Recall", "loss", "Validation Loss"], loc='upper right')
+	plt.legend(["accuracy", "Validation accuracy", "loss", "Validation Loss"], loc='upper right')
 	plt.savefig('Model_Accuracy_CNN-GRU.png')
 	plt.plot()
