@@ -13,7 +13,7 @@ def normalize(df):
 if __name__ == '__main__':
 	# Load motion data and labels.
 	print('Loading motion data\n')
-	data_df = pd.read_csv('SHLDataset_preview_v1/User1/220617/Bag_Motion.txt', delim_whitespace=True, header=None)
+	data_df = pd.read_csv('SHLDataset_preview_v1/User1/220617/Hips_Motion.txt', delim_whitespace=True, header=None)
 
 	print('Loading label data\n')
 	label_df = pd.read_csv('SHLDataset_preview_v1/User1/220617/Label.txt', delim_whitespace=True, header=None)
