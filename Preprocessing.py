@@ -13,10 +13,10 @@ def normalize(df):
 if __name__ == '__main__':
 	# Load motion data and labels.
 	print('Loading motion data\n')
-	data_df = pd.read_csv('SHLDataset_preview_v1/User1/220617/Torso_Motion.txt', delim_whitespace=True, header=None)
+	data_df = pd.read_csv('SHLDataset_preview_v1/User2/140617/Hand_Motion.txt', delim_whitespace=True, header=None)
 
 	print('Loading label data\n')
-	label_df = pd.read_csv('SHLDataset_preview_v1/User1/220617/Label.txt', delim_whitespace=True, header=None)
+	label_df = pd.read_csv('SHLDataset_preview_v1/User2/140617/Label.txt', delim_whitespace=True, header=None)
 
 	# Drop unnecessary columns.
 	label_df = label_df.drop(label_df.iloc[:, 2:8], axis=1)
