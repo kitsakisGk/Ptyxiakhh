@@ -38,7 +38,7 @@ if __name__ == '__main__':
 
 	# Change the optimization.
 	opt = Adam(learning_rate=0.001)
-	model.compile(optimizer=opt, loss=keras.losses.categorical_crossentropy, metrics=[keras.metrics.F1Score(), keras.metrics.Precision(), keras.metrics.Recall()])
+	model.compile(optimizer=opt, loss=keras.losses.categorical_crossentropy, metrics=['accuracy'])
 
 	# Show the summary of the model.
 	model.summary()
@@ -51,15 +51,15 @@ if __name__ == '__main__':
 	hist = model.fit(x_train, y_train, epochs=100, batch_size=10000, callbacks=[checkpoint, early], verbose=1, validation_split=0.2)
 
 	# Plot and save the Model accuracy.
-	# plt.plot(hist.history['accuracy'])
-	# plt.plot(hist.history['val_accuracy'])
-	plt.plot(hist.history['f1_score'])
-	plt.plot(hist.history['precision'])
-	plt.plot(hist.history['recall'])
+	plt.plot(hist.history['accuracy'])
+	plt.plot(hist.history['val_accuracy'])
+	# plt.plot(hist.history['f1_score'])
+	# plt.plot(hist.history['precision'])
+	# plt.plot(hist.history['recall'])
 	plt.plot(hist.history['loss'])
 	plt.plot(hist.history['val_loss'])
 	plt.title("CNN-VGG Model")
-	plt.ylabel("Scores")
+	plt.ylabel("Accuracy")
 	plt.xlabel("Epoch")
-	plt.legend(["F1-Score", "Precision", "Recall", "loss", "Validation Loss"], loc='upper right')
+	plt.legend(["accuracy", "Validation accuracy", "loss", "Validation Loss"], loc='upper right')
 	plt.savefig('Model_Accuracy_CNN_VGG.png')
